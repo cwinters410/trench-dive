@@ -1,0 +1,9 @@
+{
+  "name": "trench-dive",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A rare-answer trivia game inspired by Krillion.",
+  "scripts": {
+    "test": "node test/check.js"
+  }
+}

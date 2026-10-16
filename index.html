@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Trench Dive</title>
+<meta name="description" content="A rare-answer trivia game. Give one answer per prompt; the rarer it is, the deeper you dive.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Barlow+Condensed:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="src/styles.css">
+</head>
+<body>
+<div class="sea" id="sea" aria-hidden="true"></div>
+
+<div class="app">
+  <header class="top">
+    <div class="brand">
+      <h1>Trench Dive</h1>
+      <p>Rare answers sink deeper.</p>
+    </div>
+    <div class="readout">
+      <span class="ro-label">Depth</span>
+      <span class="ro-m" id="depth">0 m</span>
+      <span class="ro-z" id="zone">Sunlight zone</span>
+    </div>
+  </header>
+
+  <div class="main">
+    <aside class="gauge" id="gauge" aria-hidden="true">
+      <div class="g-rail">
+        <div class="g-track"></div>
+        <div id="g-ticks"></div>
+        <div class="g-marker"></div>
+      </div>
+    </aside>
+
+    <div class="stage">
+      <!-- Start -->
+      <section class="panel" id="s-start" aria-labelledby="start-title">
+        <p class="eyebrow">How to play</p>
+        <h2 class="lede" id="start-title">One answer per prompt. The rarer it is, the deeper you dive.</h2>
+        <p>Every prompt has a list of accepted answers, ranked by how often people say them. Obvious answers barely get you wet. Each list also hides one answer worth the most: the One in a Krillion.</p>
+        <div class="tier-wrap">
+          <table class="tiers" id="tier-table" aria-label="Scoring tiers"></table>
+        </div>
+        <ul class="rules">
+          <li><b>25 seconds per prompt.</b> A wrong guess costs 2 seconds, then you can try again.</li>
+          <li><b>Spelling can be a little off.</b> Plurals, accents and small typos are fine.</li>
+          <li><b>Endless dive:</b> no rounds, just 45 seconds of air. Right answers refill it, and rarer answers refill more.</li>
+        </ul>
+        <div class="actions">
+          <button class="btn primary" id="go-dive" type="button">Start a dive <small>7 prompts</small></button>
+          <button class="btn" id="go-endless" type="button">Endless dive</button>
+        </div>
+        <p class="fine" id="bests" hidden></p>
+        <p class="fine" id="pool-note"></p>
+      </section>
+
+      <!-- Play -->
+      <section class="panel" id="s-play" hidden aria-labelledby="q">
+        <div class="meta">
+          <span id="m-round">Prompt 1 of 7</span>
+          <span id="m-cat">Geography</span>
+          <span class="score" id="m-score">0 pts</span>
+          <button class="linkbtn" id="quit" type="button">Quit</button>
+        </div>
+        <h2 class="prompt" id="q">Name a country in Africa</h2>
+        <div class="clock" id="clock" aria-hidden="true">
+          <span class="clock-label" id="clock-label">Time</span>
+          <div class="clock-bar"><i id="clock-fill"></i></div>
+          <span class="clock-num" id="clock-num">25s</span>
+        </div>
+        <form class="answer" id="form" autocomplete="off">
+          <label class="sr" for="ans">Your answer</label>
+          <input id="ans" name="ans" type="text" placeholder="Type one answer" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" enterkeyhint="go">
+          <button class="btn primary" type="submit">Dive</button>
+        </form>
+        <div class="under" id="under">
+          <p class="fb" id="fb" role="status" aria-live="polite"></p>
+          <button class="linkbtn" id="pass" type="button">Pass</button>
+        </div>
+
+        <div class="reveal" id="reveal" hidden>
+          <div class="verdict">
+            <span class="pill" id="r-pill" data-t="-1">Plankton</span>
+            <p class="gain" id="r-gain">+10 pts</p>
+            <p class="said" id="r-said"></p>
+            <p class="note" id="r-note"></p>
+          </div>
+          <dl class="lists" id="r-lists"></dl>
+          <p class="count" id="r-count"></p>
+          <div class="actions">
+            <button class="btn primary" id="next" type="button">Next prompt</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- End -->
+      <section class="panel" id="s-end" hidden aria-labelledby="e-depth">
+        <p class="eyebrow" id="e-eyebrow">Dive complete</p>
+        <p class="big" id="e-depth">0 m</p>
+        <p class="sub" id="e-sub"></p>
+        <ol class="recap" id="e-recap"></ol>
+        <div class="share">
+          <pre id="e-share"></pre>
+          <button class="btn" id="copy" type="button">Copy result</button>
+        </div>
+        <div class="actions">
+          <button class="btn primary" id="again" type="button">Dive again</button>
+          <button class="btn" id="again-endless" type="button">Endless dive</button>
+          <button class="linkbtn" id="home" type="button">Back to rules</button>
+        </div>
+        <p class="fine" id="e-best"></p>
+      </section>
+    </div>
+  </div>
+</div>
+
+<script src="src/prompts.js"></script>
+<script src="src/matcher.js"></script>
+<script src="src/game.js"></script>
+</body>
+</html>
