@@ -46,7 +46,7 @@
         </div>
         <ul class="rules">
           <li><b>25 seconds per prompt.</b> A wrong guess costs 2 seconds, then you can try again.</li>
-          <li><b>Spelling can be a little off.</b> Plurals, accents and small typos are fine.</li>
+          <li><b>Spelling doesn’t have to be perfect.</b> Close spellings count, and if you’re further off it asks “Did you mean…?”</li>
           <li><b>Endless dive:</b> no rounds, just 45 seconds of air. Right answers refill it, and rarer answers refill more.</li>
         </ul>
         <div class="actions">
@@ -76,6 +76,11 @@
           <input id="ans" name="ans" type="text" placeholder="Type one answer" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" enterkeyhint="go">
           <button class="btn primary" type="submit">Dive</button>
         </form>
+        <div class="sug" id="sug" hidden aria-live="polite">
+          <span class="sug-label">Did you mean</span>
+          <div class="sug-opts" id="sug-opts"></div>
+          <span class="sug-hint" id="sug-hint"></span>
+        </div>
         <div class="under" id="under">
           <p class="fb" id="fb" role="status" aria-live="polite"></p>
           <button class="linkbtn" id="pass" type="button">Pass</button>

@@ -646,7 +646,7 @@ var PROMPTS = [
   n: { "airpower": "Announced, then cancelled.", "apple car|project titan": "Never released.", "ios|macos|itunes|icloud|siri|apple music|apple pay|facetime|app store|safari|apple arcade|imessage|garageband|final cut": "That's software or a service. Name a device.", "galaxy|pixel|surface|kindle|zune|walkman|blackberry|switch|playstation|xbox": "That's not Apple." } },
 
 /* ================= HISTORY (new) ================= */
-{ g: "History", q: "Name a Roman emperor", x: "emperor",
+{ g: "History", q: "Name a Roman emperor", x: "emperor emporer",
   p: "Augustus=Octavian=Caesar Augustus|Nero|Caligula|Marcus Aurelius|Constantine=Constantine the Great=Constantine I",
   tc: "Elagabalus|Romulus Augustulus",
   s: "Commodus|Hadrian|Trajan|Tiberius|Claudius|Vespasian|Titus|Domitian|Diocletian|Justinian=Justinian I|Septimius Severus=Severus|Caracalla|Theodosius I=Theodosius=Theodosius the Great|Julian=Julian the Apostate",

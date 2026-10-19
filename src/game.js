@@ -99,6 +99,7 @@ function renderStart() {
 }
 function goHome() {
   stopLoop();
+  hideSug();
   G = null;
   shown = 0;
   depthTo(0, true);
@@ -136,6 +137,7 @@ function startRound() {
   var a = el("ans");
   a.value = "";
   fb("", "");
+  hideSug();
   var now = performance.now();
   G.deadline = now + ROUND_MS;
   G.last = now;
@@ -144,6 +146,26 @@ function startRound() {
   try { a.focus({ preventScroll: true }); } catch (e) { a.focus(); }
 }
 function fb(msg, kind) { var f = el("fb"); f.textContent = msg; f.className = "fb" + (kind ? " " + kind : ""); }
+
+/* ---------- "Did you mean ...?" guesses ---------- */
+var sugFor = null;
+function hideSug() { sugFor = null; el("sug").hidden = true; el("sug-opts").textContent = ""; }
+function showSug(p, opts, raw) {
+  var box = el("sug-opts");
+  box.textContent = "";
+  opts.forEach(function (i) {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "sug-opt";
+    b.textContent = p._ans[i].name;
+    b.addEventListener("click", function () { if (G && G.phase === "play") endRound({ raw: raw.trim(), i: i }, false); });
+    box.appendChild(b);
+  });
+  el("sug-hint").textContent = opts.length > 1 ? "Tap one, or press Enter for the first." : "Tap it, or press Enter to use it.";
+  sugFor = { key: TD.norm(raw, p._x), opts: opts };
+  el("sug").hidden = false;
+}
+el("ans").addEventListener("input", function () { if (sugFor) hideSug(); });
 
 function run() {
   cancelAnimationFrame(raf);
@@ -176,9 +198,12 @@ el("form").addEventListener("submit", function (e) {
   e.preventDefault();
   if (!G || G.phase !== "play") return;
   var a = el("ans"), raw = a.value, p = P[G.list[G.idx]];
+  if (sugFor && sugFor.key && sugFor.key === TD.norm(raw, p._x)) { endRound({ raw: raw.trim(), i: sugFor.opts[0] }, false); return; }
   var r = TD.judge(p, raw);
   if (r.t === "empty") return;
   if (r.t === "ok") { endRound({ raw: raw.trim(), i: r.i }, false); return; }
+  if (r.t === "sug") { fb("", ""); showSug(p, r.opts, raw); return; }
+  hideSug();
   if (r.t === "amb") { fb(r.msg, "amb"); a.select(); return; }
   penalize();
   fb(r.t === "near" ? r.msg : "Not on the list. Try another.", "no");
@@ -191,6 +216,7 @@ function endRound(hit, passed) {
   if (!G || G.phase !== "play") return;
   stopLoop();
   G.phase = "reveal";
+  hideSug();
   revealAt = performance.now();
   var pi = G.list[G.idx], p = P[pi];
   var tier = hit ? p._ans[hit.i].tier : -1;
@@ -345,6 +371,22 @@ el("again-endless").addEventListener("click", function () { newGame("endless"); 
 el("home").addEventListener("click", goHome);
 el("quit").addEventListener("click", goHome);
 
-/* ---------- boot ---------- */
-goHome();
+/* ---------- boot (keeps a game in progress across page updates) ---------- */
+function resume() {
+  shown = 0; gaugeMaxNow = 0;
+  depthTo(G.score * M_PER_PT, true);
+  renderStart();
+  if (G.phase === "end") { finish(); return; }
+  show("s-play");
+  if (G.phase === "reveal") { revealAt = 0; renderMeta(); renderReveal(G.res[G.res.length - 1], 0); return; }
+  startRound();
+}
+function boot(data) {
+  try { if (window.claude && window.claude.hot && window.claude.hot.snapshot) window.claude.hot.snapshot(function () { return { G: G }; }); } catch (e) {}
+  var g = data && data.G;
+  if (g && g.mode && Array.isArray(g.list) && g.list.length && g.list.every(function (pi) { return !!P[pi]; }) && Array.isArray(g.res)) { G = g; resume(); }
+  else goHome();
+}
+var hot = window.claude && window.claude.hot;
+if (hot && hot.ready) hot.ready(boot); else boot((hot && hot.data) || {});
 })();

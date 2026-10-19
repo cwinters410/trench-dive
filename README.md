@@ -9,7 +9,7 @@ Open `index.html` in a browser. No install or build step.
 - **Dive:** 7 prompts, 25 seconds each. A wrong guess costs 2 seconds, then you can try again.
 - **Endless:** 45 seconds of air that only drains while you're answering. Right answers refill it, rarer ones refill more.
 
-Spelling can be a little off. Plurals, accents and small typos still count.
+Spelling doesn't have to be perfect. Plurals, accents, typos and sound-alike spellings ("mozerella", "fillipines") count automatically. If you're further off, the game asks "Did you mean...?" and you tap the right answer or press Enter for the first one.
 
 ## Scoring
 

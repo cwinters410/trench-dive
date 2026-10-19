@@ -50,7 +50,7 @@ const cases = [
   ["Name a chemical element", "Fe", "near"], ["Name a chemical element", "flourine", "s"],
   ["Name a bone in the human body", "funny bone", "near"], ["Name a bone in the human body", "thigh bone", "p"],
   ["Name a bone in the human body", "left femur", "p"],
-  ["Name a Pixar movie", "toy story 6", "amb"], ["Name a Pixar movie", "shrek", "near"],
+  ["Name a Pixar movie", "toy story 6", "sug"], ["Name a Pixar movie", "shrek", "near"],
   ["Name a Pixar movie", "monsters", "amb"], ["Name a Pixar movie", "Monsters, Inc.", "p"],
   ["Name a US president", "Benjamin Harrison", "k"], ["Name a US president", "harrison", "d"],
   ["Name a US president", "President Obama", "p"], ["Name a US president", "benjamin", "no"],
@@ -89,6 +89,13 @@ const cases = [
   ["Name a type of rock", "granite rock", "p"], ["Name a type of rock", "Dwayne Johnson", "near"],
   ["Name a country that uses the euro", "Bulgaria", "d"], ["Name a Roman emperor", "Julius Caesar", "near"],
   ["Name a part of the brain", "frontal", "p"], ["Name a psychologist", "Mary Calkins", "k"],
+  // misspellings: close ones count, further ones get a "Did you mean" guess
+  ["Name a type of cheese", "mozerella", "p"], ["Name a country in Asia", "fillipines", "s"],
+  ["Name a dinosaur", "tyranosaurus rex", "p"], ["Name a dinosaur", "brachio", "sug"],
+  ["Name a dinosaur", "pterodactly", "near"], ["Name a currency", "swiss frank", "s"],
+  ["Name an original 151 Pok\u00e9mon", "alolan vulpixx", "s"], ["Name a country in Europe", "austrlia", "near"],
+  ["Name a country in Africa", "nigera", "sug"], ["Name a Pixar movie", "rataytooey", "sug"],
+  ["Name a fruit", "qwerty", "no"], ["Name a country in Africa", "zzzzzz", "no"],
 ];
 
 let passed = 0;

@@ -190,6 +190,17 @@ body {
   30%, 50%, 70% { transform: translateX(-4px); } 40%, 60% { transform: translateX(4px); }
 }
 .fb { min-height: 1.5em; color: var(--ink-2); }
+.sug { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; }
+.sug-label { color: var(--ink-2); }
+.sug-opts { display: flex; flex-wrap: wrap; gap: 8px; }
+.sug-opt {
+  min-height: 40px; padding: 8px 16px; border-radius: 999px; cursor: pointer;
+  border: 1px solid var(--krill); background: rgba(255, 145, 139, 0.12); color: var(--ink);
+  font: 700 1rem/1.1 var(--font-body);
+}
+.sug-opt:hover { background: rgba(255, 145, 139, 0.24); }
+.sug-opt:first-child { background: var(--krill); color: var(--krill-ink); }
+.sug-hint { color: var(--ink-3); font-size: 0.85rem; flex-basis: 100%; }
 .fb.no { color: var(--warn); }
 .under { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
 
