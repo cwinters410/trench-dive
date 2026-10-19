@@ -77,6 +77,18 @@ const cases = [
   ["Name a planet or dwarf planet", "sedna", "near"], ["Name a constellation", "big dipper", "near"],
   ["Name a Greek god or goddess", "jupiter", "near"], ["Name a US state capital", "st. paul", "r"],
   ["Name a country that was part of the Soviet Union", "poland", "near"],
+  ["Name a programming language", "C++", "p"], ["Name a programming language", "c#", "s"],
+  ["Name a programming language", "C", "p"], ["Name a programming language", "html", "near"],
+  ["Name a social media app", "Google+", "r"], ["Name a social media app", "google", "near"],
+  ["Name a social media app", "Twitter", "p"], ["Name a Star Wars movie", "Star Wars: A New Hope", "p"],
+  ["Name a Star Wars movie", "mandalorian", "near"], ["Name a Minecraft mob", "golem", "amb"],
+  ["Name an original 151 Pok\u00e9mon", "Alolan Vulpix", "s"], ["Name an original 151 Pok\u00e9mon", "lucario", "near"],
+  ["Name a man who has been ranked world No. 1 in tennis", "marcelo ríos", "k"],
+  ["Name a woman who has been ranked world No. 1 in tennis", "williams", "amb"],
+  ["Name a moon in our solar system", "titan moon", "p"], ["Name a moon in our solar system", "venus", "near"],
+  ["Name a type of rock", "granite rock", "p"], ["Name a type of rock", "Dwayne Johnson", "near"],
+  ["Name a country that uses the euro", "Bulgaria", "d"], ["Name a Roman emperor", "Julius Caesar", "near"],
+  ["Name a part of the brain", "frontal", "p"], ["Name a psychologist", "Mary Calkins", "k"],
 ];
 
 let passed = 0;

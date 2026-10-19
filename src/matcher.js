@@ -21,7 +21,7 @@ function stem(w) {
 function norm(s, strip) {
   s = String(s == null ? "" : s).replace(/[łŁøØæÆœŒßđĐıþÞð]/g, function (c) { return CHARMAP[c]; });
   s = s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
-  s = s.replace(/&/g, " and ").replace(/['’‘`´ʼ]/g, "").replace(/[^a-z0-9]+/g, " ").trim();
+  s = s.replace(/&/g, " and ").replace(/\+/g, " plus ").replace(/#/g, " sharp ").replace(/['’‘`´ʼ]/g, "").replace(/[^a-z0-9]+/g, " ").trim();
   if (!s) return "";
   var out = [], words = s.split(" ");
   for (var i = 0; i < words.length; i++) {
