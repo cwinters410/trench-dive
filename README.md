@@ -29,7 +29,7 @@ Each list has exactly one One in a Krillion answer. "Too Clever" is the "obscure
 ```
 index.html         page markup
 src/styles.css     styles
-src/prompts.js     the 78 prompts and their answer lists (format notes at the top)
+src/prompts.js     the 128 prompts and their answer lists (format notes at the top)
 src/matcher.js     answer matching: normalizing, aliases, typo tolerance, hints
 src/game.js        game flow, timer, air, depth gauge, results
 test/check.js      checks every alias and a set of sample answers
